@@ -1,0 +1,20 @@
+:root{
+    --tema-1:rgb(0, 136, 205);
+}
+.form-academ{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-bottom: 2px solid var(--tema-1);
+}
+
+.carta-formacion{
+    border: 1px solid #333;
+    border-radius: 30px;
+    padding: 1rem;
+}
+.carta-formacion:hover{
+    box-shadow: 1px 1px 10px #333;
+}

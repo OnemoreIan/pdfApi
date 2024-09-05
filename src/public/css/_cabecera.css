@@ -1,0 +1,46 @@
+:root{
+    --color-base: rgb(0, 136, 205);
+    --color-texto: beige;
+}
+.cabecera{
+    min-height: 7rem;
+    max-height: 9rem;
+    background-color: var(--color-base);
+    border-radius: 0 0 50px 50px;
+
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo{
+    padding: 0 20px;
+}
+
+.espacio-boton{
+    padding: 1rem;
+    padding-right: 20px;
+}
+.btn-descargar{
+    border: 0;
+    text-align: center;
+    padding: 7px 12px;
+    background-color: transparent;
+    color: var(--color-texto);
+}
+.btn-descargar:hover{
+
+    border-radius: 5px;
+    box-shadow: 0 3px 10px #002e89;
+}
+.btn-descargar:active{
+    background-color: rgb(0, 86, 130);
+}
+
+.icono-descarga{
+    height: 15px;
+    width: 15px;
+    color: var(--color-texto);
+}

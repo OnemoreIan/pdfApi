@@ -1,0 +1,10 @@
+@import url("./_cabecera.css");
+
+@import url("./styles-main.css");
+@import url("./formacion-academica.css");
+@import url("./_contenido.css");
+@import url("./_footer.css");
+
+/* archivos organizados por categorias
+_ archivos con estilos
+<sin guion son archivos principales> */

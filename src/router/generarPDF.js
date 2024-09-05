@@ -6,7 +6,7 @@ const generarPDF = express.Router();
 
 generarPDF.get('/img', (req, res) => {
 
-    res.sendFile(path.join(__dirname, "../img/fuertota.jpg"))
+    res.sendFile(path.join(__dirname, "../img/perro.jpg"))
 
 })
 

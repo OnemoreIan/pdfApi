@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Oscar Campos</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="../css/_cabecera.css">
+    <script src="./js/general-js.js"></script>
+    
+    <script type="module" src="./src/components/nav-bar.js"></script>
+    <script type="module" src="./src/components/content-works.js"></script>
+    <script type="module" src="./src/components/content-description.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.0/papaparse.min.js"></script>
+</head>
+
+<body>
+    <nav class="cabecera">
+        <!-- <input type="checkbox" id="toggle"> -->
+        <div class="logo">
+            <img src="https://dam-americas.nttdata.com/api/public/content/NTT-DATA-Logo?v=4ba3b0db" alt="logo">
+        </div>
+
+        <div class="espacio-boton">
+            <a class="btn-descargar" href="http://localhost:6060/pdf" target="_blank" rel="noopener noreferrer">
+                Descargar en PDF
+                    <svg class="icono-descarga" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                        <path
+                        d="M256 464a208 208 0 1 1 0-416 208 208 0 1 1 0 416zM256 0a256 256 0 1 0 0 512A256 256 0 1 0 256 0zM128 256l0 32L256 416 384 288l0-32-80 0 0-128-96 0 0 128-80 0z" />
+                    </svg>
+                </div>
+            </a>
+
+        <!-- <ul class="list">
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Portafolio</a></li>
+            <li><a href="#">Descargar CV en PDF</a></li>
+        </ul> -->
+        <!-- <label for="toggle" class="icon-bars">
+            <div class="line"></div>
+            <div class="line"></div>
+            <div class="line"></div>
+        </label> -->
+    </nav>
+    <!-- <nav-bar></nav-bar> -->
+
+
+    <div class="main-container">
+        <div class="espacio-seccion">
+            <div class="titulo-seccion">
+                <h2>Sobre mi</h2>
+            </div>
+
+            <div class="content-description">
+
+                <div class="seccion-izquierda">
+                    <!-- se podria insertar grafica de arana -->
+                    <div>
+                        <img id="img-flor" src="img/grafo.png"
+                            alt="Imagen de una flor de colores hecha con lineas que se interseccionan y crear curvas">
+                    </div>
+
+                    <!-- texto descriptivo -->
+                    <div class="texto-descripcion">
+                        <p>Soy una persona constante y confiable, con mucha adaptabilidad me gustar solucionar los
+                            problemas de
+                            la manera más eficaz poniendo esmero y dedicación.</p>
+                    </div>
+                </div>
+
+                <div class="seccion-derecha">
+                    <div class="lista-datos">
+                        <ul class="datos-generales">
+                            <li>Oscar Francisco Campos Hernandez</li>
+                            <li>Centers Developer</li>
+                            <li>25 años</li>
+                            <li>55 44 77 88 99</li>
+                            <li>coreroProfecional@emeal.nttdata.com</li>
+                        </ul>
+                    </div>
+
+                    <div class="imagen-persona">
+                        <div>
+                            <img class="persona" src="img/perfil_560.png" alt="Imagen de perfil">
+
+                        </div>
+                        <!-- <img id="img-flor-dos" src="img/fondo.png" alt="Imagen de una flor de colores hecha con lineas que se interseccionan y crear curvas"> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div>
+            <h2>Experencia laboral</h2>
+        </div>
+        <div class="content-works">
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h2>Dental NetWork</h2>
+                        <p>Período de Trabajo: Febrero 2024 - Marzo 2024</p>
+                        <p>Puesto: Desarrollador Web</p>
+                    </div>
+                    <div class="card-back">
+                        <h2>Descripción de Actividades</h2>
+                        <p>
+                            • Desarrollo de proyecto para la validación de entradas y salidas de personal creado con
+                            PHP, JS, HTML, CSS, AJAX y MySQL.<br><br>
+                            • Soporte técnico atención en sitio para la configuración y mantenimiento de computadoras
+                            con sistema operativo Windows. <br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h2>Acil México</h2>
+                        <p>Período de Trabajo: Septiembre 2023 - Enerono 2024</p>
+                        <p>Puesto: Desarrollador Web</p>
+                    </div>
+                    <div class="card-back">
+                        <h2>Descripción de Actividades</h2>
+                        <p>
+                            • Corrección y optimización de código PHP, JS, HTML, CSS e Implementación de la técnica de
+                            desarrollo web AJAX. <br><br>
+                            • Creación de nuevos módulos para la automatización de procesos administrativos y de
+                            logística.<br><br>
+                            • Diseño, creación e implementación de bases de datos relacionales con MySQL.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <h2>Telia - IP </h2>
+                        <p>Período de Trabajo: Octubre 2022 - Agosto 2023</p>
+                        <p>Puesto: Soporte Tecnico</p>
+                    </div>
+                    <div class="card-back">
+                        <h2>Descripción de Actividades</h2>
+                        <p>
+                            • Instalación, configuración, mantenimiento preventivo y correctivo de equipos de
+                            red.<br><br>
+                            • Atención y servicio a clientes en sitio y remotamente.<br><br>
+                            • Creación, edición y publicación de contenido en su CMS.<br><br>
+                            • Creación de landing pages con WordPress
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div>
+            <h2>Educación</h2>
+        </div>
+        <div class="content-education">
+            <div class="slider">
+                <div class="slides">
+                    <div class="slide"><img src="./img/tese.jpg" alt="Imagen 1"></div>
+                    <div class="slide"><img src="./img/tese-ing-sistemas.jpeg" alt="Imagen 2"></div>
+                    <div class="slide"><img src="./img/certificado.jpg" alt="Imagen 3"></div>
+                </div>
+                <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+            
+        </div> -->
+
+
+        <div>
+            <h2>Formacion Academica</h2>
+        </div>
+        <div class="form-academ">
+            <div class="carta-formacion">
+                <p>Institucion: Unam</p>
+                <p>Generacion: 2000-3000</p>
+                <p>Licencitura: Sistemas coputacionales</p>
+            </div>
+            <div class="carta-formacion">
+                <p>Institucion: Unam</p>
+                <p>Generacion: 2000-3000</p>
+                <p>Licencitura: Sistemas coputacionales</p>
+            </div>
+            <div class="carta-formacion">
+                <p>Institucion: Unam</p>
+                <p>Generacion: 2000-3000</p>
+                <p>Licencitura: Sistemas coputacionales</p>
+            </div>
+
+        </div>
+
+
+        <div>
+            <h2>Certificaciones</h2>
+        </div>
+        <div class="content-education">
+            <div class="slider">
+                <div class="slides">
+                    <div class="slide"><img src="./img/tese.jpg" alt="Imagen 1"></div>
+                    <div class="slide">
+                        <img src="./img/tese-ing-sistemas.jpeg" alt="Imagen 2">
+                        <span class="noConcluido">En curso</span>
+                    </div>
+                    <div class="slide"><img src="./img/certificado.jpg" alt="Imagen 3"></div>
+                </div>
+                <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+                <button class="next" onclick="moveSlide(1)">&#10095;</button>
+            </div>
+        </div>
+
+        <div>
+            <h2>Habilidades Blandas</h2>
+        </div>
+
+        <div class="content-softskills">
+
+            <div class="item" onclick="openModal('firstModal')">
+                <i class="fas fa-users"></i>
+                Trabajo en equipo
+            </div>
+            <div class="item" onclick="openModal('secondModal')">
+                <i class="fas fa-comments"></i>
+                Comunicación efectiva
+            </div>
+            <div class="item" onclick="openModal('threeModal')">
+                <i class="fas fa-heartbeat"></i>
+                Resiliencia
+            </div>
+        </div>
+
+        <!-- Modales -->
+        <div id="firstModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('firstModal')">&times;</span>
+                <h2>Trabajo en equipo</h2>
+                <p>Colaboración continua con el equipo de trabajo realizando reuniones para el análisis y creación del
+                    modelado de bases de datos.</p>
+            </div>
+        </div>
+
+        <div id="secondModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('secondModal')">&times;</span>
+                <h2>Comunicación efectiva</h2>
+                <p>Descripción del concepto de comunicación efectiva.</p>
+            </div>
+        </div>
+
+        <div id="threeModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal('threeModal')">&times;</span>
+                <h2>Resilencia</h2>
+                <p>Descripción del concepto de comunicación efectiva.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="barra-baja">&nbsp;</footer>
+</body>
+
+</html>

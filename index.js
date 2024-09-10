@@ -13,7 +13,10 @@ const test = require('./src/router/test.js');
 const pdf = require('./src/router/generarPDF.js');
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, 'public')))
+//app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, 'src', 'public')));
+
+
 
 //uso de rutas
 app.use(direcciones);

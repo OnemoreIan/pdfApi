@@ -7,10 +7,10 @@ export const contentDescription = css`
         gap: 10px;
         border: 1px solid #ccc;
         padding: 10px;
-        margin-top: 80px;
+        margin: 10%;
     }
-
     .box-right {
+        color: black;
         display: grid;
         grid-template-columns: 1fr 1fr; /* Divide el espacio en dos columnas */
         grid-template-rows: 1fr;    /* Divide el espacio en dos filas */
@@ -31,23 +31,36 @@ export const contentDescription = css`
         width: 140px;
         height: 300px;
     }
-    #img-flor-dos {
-        width: 280px;
-        position: absolute;
-        z-index: -1;
-    }
-    #img-perfil {
-        width: 240px;
-    }
+
     .box-left {
+        color: white;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
+        background-image: url("/img/background-ntt.png");
+        background-size: cover; /* La imagen se ajustará para cubrir el contenedor */
+        background-position: center; /* Centra la imagen en el contenedor */
+        background-repeat: no-repeat; /* Evita que la imagen se repita */
     }
 
-    #img-flor{
+    #img-background-left {
+        width: 280px;
+        position: absolute;
+        z-index: -1;
+    }
+    #img-user {
+        width: 240px;
+    }
+
+    #img-background-rigth{
         margin-bottom: 10%;
         width: 200px;
+    }
+
+    @media (max-width: 768px) {
+        #img-user {
+            width: 140px;
+        }
     }
 `;

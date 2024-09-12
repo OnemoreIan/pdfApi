@@ -1,3 +1,4 @@
+const { query } = require('express');
 const mysql = require('mysql');
 
 // Configuración de la conexión MySQL
@@ -14,9 +15,9 @@ const connection = mysql.createConnection({
   // database: process.env.DATABASE
 });
 
-// Función para obtener datos de la base de datos
-exports.getUserData = (req, res) => {
-  const query = 'SELECT * FROM user WHERE idUser = 1';
+// Obtención del primer usuario
+exports.getUserDefault = (req, res) => {
+  const query = 'SELECT * FROM user where idUser = 1'; // Selecciona el primer usuario como predeterminado
   connection.query(query, (error, results) => {
     if (error) {
       console.error('Error al realizar la consulta: ', error);
@@ -27,8 +28,22 @@ exports.getUserData = (req, res) => {
   });
 };
 
-// Función para obtener los usuarios registrados
-exports.getUsers = (req, res) => {
+// Obtención de datos por Id de usuario
+exports.getUserId = (req, res) => {
+  const { id } = req.params; // Obtén el id del usuario de los parámetros
+  const query = 'SELECT * FROM user WHERE idUser = ?';
+  connection.query(query, [id], (error, results) => {
+    if (error) {
+      console.error('Error al realizar la consulta: ', error);
+      res.status(500).json({ error: 'Error al obtener los datos' });
+    } else {
+      res.json(results[0]);
+    }
+  });
+};
+
+// Obtención de todos los usuarios registrados
+exports.getAllUsers = (req, res) => {
   const query = 'SELECT * FROM user';
   connection.query(query, (err, results) => {
       if (err) {
@@ -37,5 +52,25 @@ exports.getUsers = (req, res) => {
       } else {
           res.json(results);
       }
+  });
+};
+
+// Inserción de un usuario nuevo
+exports.registerUser = (req, res) => {
+  const { nameUser, phone, old, emailUser, photo, description } = req.body;
+
+  if (!nameUser || !emailUser) {
+    return res.status(400).json({ error: 'Faltan campos obligatorios' });
+  }
+
+  const query = 'INSERT INTO user (nameUser, phone, old, emailUser, photo, description) VALUES (?, ?, ?, ?, ?, ?)';
+
+  connection.query(query, [nameUser, phone, old, emailUser, photo, description], (err, result) => {
+    if (err) {
+      console.error('Error al insertar usuario:', err);
+      return res.status(500).json({ error: 'Error al registrar el usuario' });
+    } else {
+      return res.json({ success: 'Usuario registrado con éxito', id: result.insertId });
+    }
   });
 };

@@ -8,19 +8,27 @@ const dataController = require('../controllers/dataController');
 
 
 // obtener datos generales
-general.get('/userdata', dataController.getUserData);
-general.get('/userdata2', dataController.getUsers);
+
+general.get('/user-data', dataController.getUserId);
+// app.get('/userdata2/:id', getUserId);
+
+general.get('/all-data-users', dataController.getAllUsers);
+general.get('/user-default', dataController.getUserDefault);
+
+// registrar usuario
+//general.get('/register-user', dataController.registerUser);
+general.post('/register-user', dataController.registerUser);
 
 // obtener los usuarios
 
-general.get('/colores',generalC.todosColores);
-general.post('/color',generalC.color);
-general.post('/error',generalC.saludo3);
+// general.get('/colores',generalC.todosColores);
+// general.post('/color',generalC.color);
+// general.post('/error',generalC.saludo3);
 
 
-//usuarios
+// //usuarios
 
-general.get('/user',usuariosController.veriUsu);
-general.get('/error',usuariosController.test);
+// general.get('/user',usuariosController.veriUsu);
+// general.get('/error',usuariosController.test);
 
 module.exports = general;

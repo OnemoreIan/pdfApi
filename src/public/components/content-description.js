@@ -1,7 +1,7 @@
 // import { LitElement, html } from 'lit';
 // import { contentDescription } from 'https:/curriculum-pi-one.vercel.app/css/contentDescriptionStyles.js';
-import { contentDescription } from '/css/contentDescriptionStyles.js';
 import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
+import { contentDescription } from '/css/contentDescriptionStyles.js';
 
 export class ContentDescription extends LitElement {
 
@@ -15,24 +15,27 @@ export class ContentDescription extends LitElement {
         name: { type: String },
         old: { type: Number },
         job: { type: String },
-        description: { type: String }
+        description: { type: String },
+        photo: {type: String}
     };
 
     constructor() {
         super();
         this.name = '';
         this.old = 0;
-        this.job = '';
+        this.job = ''; //hay que hace un JOIN para obtener este dato
         this.description = '';
+        this.photo = '';
+        this.phone = '';
     }
 
     
     firstUpdated() {
-        this.loadUserData();
+        this.loadUserDataContent();
     }
 
-    loadUserData() {
-        fetch('/userdata')
+    loadUserDataContent() {
+        fetch('/user-default')
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -41,10 +44,11 @@ export class ContentDescription extends LitElement {
             })
             .then(data => {
                 this.name = data.nameUser;
+                this.phone = data.phone;
                 this.old = data.old;
-                this.job = data.phone;
+                this.photo = data.photo;
                 this.description = data.description;
-
+                
                 /*Dubbug (Eliminar en producción)
 
                 console.log("Nombre:"+this.name);
@@ -63,18 +67,19 @@ export class ContentDescription extends LitElement {
         return html`
             <div class="content-description">
                 <div class="box-left">
-                    <img id="img-flor" src="img/grafo.png" alt="Imagen de una flor de colores hecha con líneas que se interseccionan y crean curvas">
+                    <!--img id="img-background-rigth" src="img/background-ntt.png" alt="Imagen de una flor de colores hecha con líneas que se interseccionan y crean curvas"-->
                     <p id="decripcion">${this.description}</p>
                 </div>
                 <div class="box-right">
                     <div class="box-right-1">
-                        <p id="nombre">${this.name}</p><br>
-                        <p id="puesto">${this.job}</p><br>
-                        <p id="edad">${this.old} años</p>
+                        <p id="name">${this.name}</p><br>
+                        <p id="job">Programador</p><br>
+                        <p id="old">${this.old} años</p>
+                        <p id="phone">${this.phone}</p>
                     </div>
                     <div class="box-right-2">
-                        <img id="img-flor-dos" src="img/fondo.png" alt="Imagen de una flor de colores hecha con líneas que se interseccionan y crean curvas">
-                        <img id="img-perfil" src="img/perfil_560.png" alt="Imagen de perfil">
+                        <!--img id="img-background-left" src="img/fondo.png" alt="Imangen de fondo"-->
+                        <img id="img-user" src="/img/${this.photo}" alt="Imagen de perfil">
                     </div>
                 </div>
             </div>

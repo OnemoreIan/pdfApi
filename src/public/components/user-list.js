@@ -1,7 +1,12 @@
 import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
-
+import { userList } from '/css/userListStyles.js';
 export class UserList extends LitElement {
-
+    //Estilos
+    static get styles(){
+        return[
+            userList
+        ];
+    }
     static properties = {
         users: { type: Array }
     };
@@ -12,11 +17,11 @@ export class UserList extends LitElement {
     }
 
     firstUpdated() {
-        this.loadUsers();
+        this.loadListUsers();
     }
 
-    loadUsers() {
-        fetch('/userdata2')
+    loadListUsers() {
+        fetch('/all-data-users')
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -32,35 +37,39 @@ export class UserList extends LitElement {
     
     render() {
         return html`
-            <table border="1">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>Teléfono</th>
-                        <th>Edad</th>
-                        <th>Descripción</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${this.users.map(user => html`
+            <div class="container-user-list">
+                <table class="table-users-list">
+                    <thead>
                         <tr>
-                            <td>${user.idUser}</td>
-                            <td>${user.nameUser}</td>
-                            <td>${user.phone}</td>
-                            <td>${user.old}</td>
-                            <td>${user.description}</td>
-                             <button @click="${this.goToRegisterUser}">Registrar Usuario</button>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Teléfono</th>
+                            <th>Edad</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
                         </tr>
-                    `)}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        ${this.users.map(user => html`
+                            <tr>
+                                <td>${user.idUser}</td>
+                                <td>${user.nameUser}</td>
+                                <td>${user.phone}</td>
+                                <td>${user.old}</td>
+                                <td>${user.description}</td>
+                                <td>
+                                    <button @click="${ () => this.goToInfo(user.idUser)}">Ver usuario </button>
+                                </td>
+                            </tr>
+                        `)}
+                    </tbody>
+                </table>
+            </div>
         `;
     }
-
-    goToRegisterUser() {
-        window.location.href = '/html/registerUser.html'; // Redirige a la página del formulario
+    
+    goToInfo(idUser) {
+        window.location.href = `/user-info`; // Redirige a la página del formulario
     }
 }
 

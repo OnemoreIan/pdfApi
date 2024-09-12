@@ -16,11 +16,11 @@ class NavBar extends LitElement {
       <nav>
         <input type="checkbox" id="toggle">
         <div class="logo">
-          LOGO
+          <img src="https://dam-americas.nttdata.com/api/public/content/NTT-DATA-Logo?v=4ba3b0db" alt="logo">
         </div>
         <ul class="list">
           <li><a href="#">Inicio</a></li>
-          <li><a href="#">Portafolio</a></li>
+          <li><a href="/html/registerUser.html">Registrar</a></li>
           <li><a href="#">Descargar CV</a></li>
         </ul>
         <label for="toggle" class="icon-bars">

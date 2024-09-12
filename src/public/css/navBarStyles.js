@@ -11,7 +11,7 @@ export const navBarStyles = css `
       padding: 0 5%;
       margin: 0 3%;
       height: 70px;
-      background-color: black;
+      background-color: #1B57A6;
       border-radius:0px 0px 100% 100%;
     }
 
@@ -21,11 +21,6 @@ export const navBarStyles = css `
       height: 50%;
       display: flex;
       align-items: center;
-      font-size: 24px;
-      color: #ffffff;
-      font-weight: bold;
-      text-transform: uppercase;
-      /*border: 1px solid; /*Para test de espaciado*/
     }
 
     nav .list {
@@ -59,9 +54,11 @@ export const navBarStyles = css `
     }
 
     nav .list a:hover {
-      /* border-bottom: 4px solid #1DFF4F; /*solo pone la parte de abajo*/ 
-      border-radius: 5px; /* Agrega esquinas redondeadas si deseas */
-      box-shadow: 0 0 10px #1DFF4F; /* Define el sombreado con desplazamiento X, desplazamiento Y y tamaño de difuminado */
+      background-color:#BFC3D9;
+      color: #292F40;
+      border-radius: 5px;
+      border-bottom: 4px solid #292F40;
+      /*box-shadow: 0 0 10px #292F40;*/
     }
 
     #toggle {
@@ -91,6 +88,7 @@ export const navBarStyles = css `
             float: none;
             width: auto;
             justify-content: center;
+            padding: 10px;
         }
 
         nav .list {

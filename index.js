@@ -1,8 +1,13 @@
 const express = require('express');
 const cors = require('cors');
+const bodyParser = require('body-parser')
 const path = require('path');
 const app = express();
 const port = 6060;
+
+// Middleware para procesar el cuerpo de las solicitudes POST en JSON
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // const general = require('../router/general.js');
 const direcciones = require('./src/router/direcciones.js');

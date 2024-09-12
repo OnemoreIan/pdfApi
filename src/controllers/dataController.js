@@ -9,10 +9,7 @@ const connection = mysql.createConnection({
   password: "",
   port: 3000
 
-  // host: process.env.HOST,
-  // user: process.env.USER,
-  // password: process.env.KEY,
-  // database: process.env.DATABASE
+
 });
 
 // Obtención del primer usuario

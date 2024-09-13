@@ -3,52 +3,74 @@ const mysql = require('mysql');
 
 // Configuración de la conexión MySQL
 const connection = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  database: "cv_online",
-  password: "",
-  port: 3000
-
-
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT
 });
 
-// Obtención del primer usuario
-exports.getUserDefault = (req, res) => {
-  const query = 'SELECT * FROM user where idUser = 1'; // Selecciona el primer usuario como predeterminado
-  connection.query(query, (error, results) => {
-    if (error) {
-      console.error('Error al realizar la consulta: ', error);
-      res.status(500).json({ error: 'Error al obtener los datos' });
-    } else {
-      res.json(results[0]);
+function establecerConexion(res) {
+  connection.connect( err => {
+    if (err) {
+      res.status(500).send(JSON({"Problemas al conectar" : conexion.respuesta}));
     }
+
   });
+
+}
+
+// Función para obtener datos de la base de datos
+exports.getUserData = (req, res) => {
+
+  //creamos la consulta
+  const query = 'SELECT * FROM user WHERE idUser = 1';
+
+  try {
+
+    establecerConexion(res);
+
+    connection.query(query, (error, results) => {
+
+      if (error) throw error;
+  
+      console.log("resultados => "+results);
+      console.log(results);
+      
+
+
+      let respuesta = {
+        "data":results
+      }
+
+      res.send(respuesta);
+      
+  
+    });
+    console.log("Coneccion cerrada");
+    connection.end();
+  
+    
+    
+  } catch (error) {
+    res.status(500).send({"Problemas durante la consulta" : error});
+  }
+  
+
+
+  
 };
 
-// Obtención de datos por Id de usuario
-exports.getUserId = (req, res) => {
-  const { id } = req.params; // Obtén el id del usuario de los parámetros
-  const query = 'SELECT * FROM user WHERE idUser = ?';
-  connection.query(query, [id], (error, results) => {
-    if (error) {
-      console.error('Error al realizar la consulta: ', error);
-      res.status(500).json({ error: 'Error al obtener los datos' });
-    } else {
-      res.json(results[0]);
-    }
-  });
-};
-
-// Obtención de todos los usuarios registrados
-exports.getAllUsers = (req, res) => {
+// Función para obtener los usuarios registrados
+exports.getUsers = (req, res) => {
   const query = 'SELECT * FROM user';
   connection.query(query, (err, results) => {
-      if (err) {
-          console.error("Error al obtener usuarios: ", err);
-          res.status(500).send("Error al obtener usuarios");
-      } else {
-          res.json(results);
-      }
+    if (err) {
+      console.error("Error al obtener usuarios: ", err);
+      res.status(500).send("Error al obtener usuarios");
+    } else {
+      res.json(results);
+    }
   });
 };
 

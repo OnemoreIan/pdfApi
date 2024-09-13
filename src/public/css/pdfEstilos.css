@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.hoja{
+    padding: 1rem;
+}
+
+.espacio-general{
+    padding: .5rem;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    gap: 1px;
+}
+
+

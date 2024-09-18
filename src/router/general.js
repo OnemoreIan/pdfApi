@@ -9,10 +9,12 @@ const dataController = require('../controllers/dataController');
 
 // obtener datos generales
 
-general.get('/user-data', dataController.getUserId);
-// app.get('/userdata2/:id', getUserId);
+general.get('/user-data/:id', dataController.getUserId);
+
+general.get('/user-works/:id', dataController.getWorksWithId);
 
 general.get('/all-data-users', dataController.getAllUsers);
+
 general.get('/user-default', dataController.getUserDefault);
 
 // registrar usuario

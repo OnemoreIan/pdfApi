@@ -13,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const direcciones = require('./src/router/direcciones.js');
 const general = require('./src/router/general.js');
 // const test = require('../router/test.js');
-const test = require('./src/router/test.js');
+// const test = require('./src/router/test.js'); // Es para 
 
 const pdf = require('./src/router/generarPDF.js');
 
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'src', 'public')));
 app.use(direcciones);
 
 //api
-app.use('/api',test);
+//app.use('/api',test);
 app.use(general);
 app.use(pdf);
 

@@ -8,8 +8,6 @@ const connection = mysql.createConnection({
   database: "cv_online",
   password: "",
   port: 3000
-
-
 });
 
 // Obtención del primer usuario
@@ -21,6 +19,22 @@ exports.getUserDefault = (req, res) => {
       res.status(500).json({ error: 'Error al obtener los datos' });
     } else {
       res.json(results[0]);
+    }
+  });
+};
+
+// Obtención de registros de datos con el Id del usuario
+exports.getWorksWithId = (req, res) => {
+  const { id } = req.params;
+  const query = 'SELECT * FROM experience WHERE idUser = ?';
+  connection.query(query, [id], (error, results) => {
+    if (error) {
+      console.error('Error al realizar la consulta: ', error);
+      res.status(500).json({ error: 'Error al obtener los datos' });
+    } else if (results.length > 0) {
+      res.json(results); // Enviar todos los resultados
+    } else {
+      res.status(404).json({ error: 'No se encontraron datos para este usuario' });
     }
   });
 };

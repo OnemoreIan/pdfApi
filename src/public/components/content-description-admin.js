@@ -1,9 +1,9 @@
 // import { LitElement, html } from 'lit';
 // import { contentDescription } from 'https:/curriculum-pi-one.vercel.app/css/contentDescriptionStyles.js';
 import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
-import { contentDescription } from '/css/contentDescriptionStyles.js';
+import { contentDescription } from '/css/contentDescriptionAdminStyles.js';
 
-export class ContentDescription extends LitElement {
+export class ContentDescriptionAdmin extends LitElement {
 
     static get styles(){
         return[
@@ -31,10 +31,10 @@ export class ContentDescription extends LitElement {
 
     
     firstUpdated() {
-        this.loadUserDataContent();
+        this.loadData();
     }
 
-    loadUserDataContent() {
+    loadData() {
         fetch('/user-default')
             .then(response => {
                 if (!response.ok) {
@@ -87,4 +87,4 @@ export class ContentDescription extends LitElement {
     }
 }
 
-customElements.define('content-description', ContentDescription);
+customElements.define('content-description-admin', ContentDescriptionAdmin);

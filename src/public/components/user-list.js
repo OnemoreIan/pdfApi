@@ -59,6 +59,7 @@ export class UserList extends LitElement {
                                 <td>${user.description}</td>
                                 <td>
                                     <button @click="${ () => this.goToInfo(user.idUser)}">Ver usuario </button>
+                                    <button @click="${ () => this.printCV()}">Imprimir</button>
                                 </td>
                             </tr>
                         `)}
@@ -69,7 +70,12 @@ export class UserList extends LitElement {
     }
     
     goToInfo(idUser) {
-        window.location.href = `/user-info`; // Redirige a la página del formulario
+        window.location.href = `/html/user-info.html?id=${idUser}`; // Redirige a la página del formulario
+    }
+
+    printCV(){
+        //console.log('User registered:', data);
+        alert('El cv se imprimio con éxito');
     }
 }
 

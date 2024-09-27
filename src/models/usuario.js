@@ -1,5 +1,8 @@
 export const usuario = {
-    "nombre": "",
-    "contrasena": "",
+    "id": ""
+}
+
+export const usuarios = {
+    "id":""
 }
 

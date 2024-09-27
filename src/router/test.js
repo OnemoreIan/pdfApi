@@ -5,7 +5,7 @@ const test = express.Router();
 
 test.get('/img',(req,res) => {
 
-    res.sendFile(path.join(__dirname,"../img/perro.jpg"))
+    res.sendFile(path.join(__dirname,"../assets/perro.jpg"));
     
 })
 

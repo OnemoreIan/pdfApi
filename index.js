@@ -11,28 +11,33 @@ const port = process.env.APP_PORT || 6060;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// const general = require('../router/general.js');
+//obtenemos las rutas
 const direcciones = require('./src/router/direcciones.js');
-const general = require('./src/router/general.js');
-const consulUsuarios = require('./src/router/consulta-usuarios.js');
-// const test = require('../router/test.js');
+const consultaEmpleados = require('./src/router/consulta-empleados.js');
 const test = require('./src/router/test.js');
-
 const pdf = require('./src/router/generarPDF.js');
+
+// const general = require('../router/general.js');
+// const general = require('./src/router/general.js');
+// const test = require('../router/test.js');
+
 
 app.use(cors());
 //app.use(express.static(path.join(__dirname, 'public')))
+
+//midelware para el manejo de rutas
 app.use(express.static(path.join(__dirname, 'src', 'public')));
+// Middleware de manejo de errores
 
 
 
-//uso de rutas
+//direcciones html
 app.use(direcciones);
-
-//api
-app.use('/api',test);
-app.use('/api',consulUsuarios);
 app.use(pdf);
+
+//end points api
+app.use('/api',test);//probar conexion
+app.use('/api',consultaEmpleados);
 
 app.listen(port, () => {
     console.log('Ejecutando servidor en ' + port);

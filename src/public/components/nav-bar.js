@@ -21,7 +21,7 @@ class NavBar extends LitElement {
         <ul class="list">
           <li><a href="#">Inicio</a></li>
           <li><a href="/html/registerUser.html">Registrar</a></li>
-          <li><a href="#">Descargar CV</a></li>
+          <li><a href="pdf">Descargar CV</a></li>
         </ul>
         <label for="toggle" class="icon-bars">
           <div class="line"></div>

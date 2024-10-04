@@ -1,4 +1,5 @@
 const { query } = require('express');
+const { Sequelize } = require('sequelize');
 const mysql = require('mysql');
 
 var connection; //variable para todas las interacciones
@@ -73,7 +74,7 @@ exports.getOneUser = (req, res) => {
 //obtener todos los resultados
 exports.getAllUsers = (req, res) => {
   try {
-    let consulta = "SELECT * from user";
+    let consulta = "SELECT * from empleados";
 
     inicioConexion();
 
@@ -96,6 +97,117 @@ exports.getAllUsers = (req, res) => {
 
   connection.end();
 
+};
+
+// obtener todos los datos del empleado
+exports.getFullDataUser = (req, res) => {
+  try {
+    let { id } = req.query;
+    let consulta;
+
+    let empleado;
+
+    let respuesta = {
+      'empleado' : empleado,
+      'idomas': empleado,
+    }
+
+    inicioConexion();
+
+    // empleado
+    consulta = `SELECT * FROM empleados WHERE empleados.id_empleado = ${id};`;
+    connection.query(consulta, (err,resultado) => {
+
+      respuesta.empleado = resultado[0];
+      
+      respuesta.idomas = connection.query(consulta);
+
+      consulta = `SELECT idiomas.* FROM empleados, idiomas WHERE empleados.id_empleado = idiomas.id_empleado AND empleados.id_empleado = ${id};`;
+      connection.query(consulta,(err,resultado) => respuesta.idomas = resultado);
+
+      console.log(respuesta);
+      
+
+      res.send(respuesta);
+    });
+
+    console.log(empleado);
+    
+    /* await connection.query(consulta, (err, resultado) => {
+      console.log(resultado);
+      
+      empleado = resultado;
+      // res.send(respuesta);
+    }); */
+
+    // idiomas
+    /* consulta = `SELECT idiomas.* FROM empleados, idiomas WHERE empleados.id_empleado = idiomas.id_empleado AND empleados.id_empleado = ${id};`;
+    await connection.query(consulta, (err, resultado) => {
+      // console.log(resultado);
+      
+      idiomas = resultado;
+    });
+
+    // certificaciones
+    consulta = `SELECT idiomas.* FROM empleados, idiomas WHERE empleados.id_empleado = idiomas.id_empleado AND empleados.id_empleado = ${id};`;
+    await connection.query(consulta, (err, resultado) => {
+      // console.log(resultado);
+      
+      certificaciones = resultado;
+    });
+
+    // educacion
+    consulta = `SELECT idiomas.* FROM empleados, idiomas WHERE empleados.id_empleado = idiomas.id_empleado AND empleados.id_empleado = ${id};`;
+    await connection.query(consulta, (err, resultado) => {
+      // console.log(resultado);
+      
+      educacion = resultado;
+    });
+
+    // experiencia
+    consulta = `SELECT idiomas.* FROM empleados, idiomas WHERE empleados.id_empleado = idiomas.id_empleado AND empleados.id_empleado = ${id};`;
+    await connection.query(consulta, (err, resultado) => {
+      // console.log(resultado);
+      
+      experiencia = resultado;
+    });
+
+
+    // puestos
+    consulta = `SELECT idiomas.* FROM empleados, idiomas WHERE empleados.id_empleado = idiomas.id_empleado AND empleados.id_empleado = ${id};`;
+    await connection.query(consulta, (err, resultado) => {
+      // console.log(resultado);
+      
+      puestos = resultado;
+    }); */
+
+    
+
+    // respuesta.json();
+    console.log("raw");
+    // console.log(respuesta);
+    
+    
+
+    
+
+
+
+
+
+
+
+  } catch (error) {
+    console.log(error);
+
+    let respuesta = {
+      "Hubo un problema": error.query
+    };
+
+    res.status(500).send(respuesta);
+  }
+
+  connection.end();
 };
 
 

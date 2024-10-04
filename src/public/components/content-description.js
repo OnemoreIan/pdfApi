@@ -67,7 +67,6 @@ export class ContentDescription extends LitElement {
         return html`
             <div class="content-description">
                 <div class="box-left">
-                    <!--img id="img-background-rigth" src="img/background-ntt.png" alt="Imagen de una flor de colores hecha con líneas que se interseccionan y crean curvas"-->
                     <p id="decripcion">${this.description}</p>
                 </div>
                 <div class="box-right">
@@ -78,8 +77,8 @@ export class ContentDescription extends LitElement {
                         <p id="phone">${this.phone}</p>
                     </div>
                     <div class="box-right-2">
-                        <!--img id="img-background-left" src="img/fondo.png" alt="Imangen de fondo"-->
-                        <img id="img-user" src="/img/${this.photo}" alt="Imagen de perfil">
+                        <img id="img-user" src="../img/persona.png" alt="imagen de persona">
+                        <!-- <img id="img-user" src="/img/${this.photo}" alt="Imagen de perfil"> -->
                     </div>
                 </div>
             </div>

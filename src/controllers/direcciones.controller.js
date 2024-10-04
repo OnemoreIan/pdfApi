@@ -14,6 +14,10 @@ class Direcciones{
 
     }
 
+    editarPerfil(req,res){
+        res.sendFile(path.join( __dirname, "../public/html/editarPerfil.html"))
+    }
+
     pagUserInfo(req, res){
         res.sendFile(path.join(__dirname, "../public/html/user-info.html"));
     }

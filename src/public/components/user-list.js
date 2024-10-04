@@ -1,5 +1,8 @@
 import { LitElement, html } from 'https://cdn.jsdelivr.net/gh/lit/dist@3/core/lit-core.min.js';
 import { userList } from '/css/userListStyles.js';
+
+let rutaUsuarios ="http://localhost:6060/api/empleados";
+
 export class UserList extends LitElement {
     //Estilos
     static get styles(){
@@ -21,16 +24,11 @@ export class UserList extends LitElement {
     }
 
     loadListUsers() {
-        fetch('/all-data-users')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                }
-                return response.json();
-            })
+        fetch(rutaUsuarios)
+            .then(data => data.json())
             .then(data => {
                 console.log('Datos recibidos:', data)
-                this.users = data;
+                this.users = data.data;
             })
             .catch(error => console.error('Error fetching users:', error));
     }
@@ -41,24 +39,25 @@ export class UserList extends LitElement {
                 <table class="table-users-list">
                     <thead>
                         <tr>
-                            <th>ID</th>
                             <th>Nombre</th>
                             <th>Teléfono</th>
                             <th>Edad</th>
                             <th>Descripción</th>
+                            <th>Correo</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         ${this.users.map(user => html`
                             <tr>
-                                <td>${user.idUser}</td>
-                                <td>${user.nameUser}</td>
-                                <td>${user.phone}</td>
-                                <td>${user.old}</td>
-                                <td>${user.description}</td>
+                                <td>${user.nombre}</td>
+                                <td>${user.telefono}</td>
+                                <td>${user.edad}</td>
+                                <td>${user.descripcion}</td>
+                                <td>${user.correo}</td>
                                 <td>
-                                    <button @click="${ () => this.goToInfo(user.idUser)}">Ver usuario </button>
+                                    <a href="/pdf?id=${user.id_empleado}" target="_blank" rel="direccion para descargar cv">Descargar Cv</a>
+                                    <button @click="${ () => this.goToInfo(user.idUser)}">Editar perfil</button>
                                 </td>
                             </tr>
                         `)}

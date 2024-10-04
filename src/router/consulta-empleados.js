@@ -9,8 +9,9 @@ const empleadosController = require('../controllers/empleados.controller.js');
 
 
 // obtener datos generales
-general.get('/usuario', empleadosController.getOneUser);
-general.get('/usuarios', empleadosController.getAllUsers);
+general.get('/empleado', empleadosController.getOneUser);
+general.get('/empleados', empleadosController.getAllUsers);
+general.get('/dataEmpleado', empleadosController.getFullDataUser);
 
 general.get('/userdata', empleadosController.getUserData);
 general.get('/userdata2', empleadosController.getUsers);

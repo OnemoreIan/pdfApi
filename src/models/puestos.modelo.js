@@ -1,20 +1,29 @@
-const { Sequelize, DataTypes } = require('sequelize');
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../db/conection.js');
 
-const sequelize = new Sequelize('mysql');
 
 const puestosM = sequelize.define(
     'puestos',
     {
 
         id_puestos: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            primaryKey: true
         },
         nombre_puesto: {
             type: DataTypes.STRING
         },
         id_empleado:{
-            type: DataTypes.STRING
+            type: DataTypes.INTEGER
         }
 
+    },{
+        timestamps: false
     }
-)
+);
+
+module.exports = {
+    puestosM
+}
+
+

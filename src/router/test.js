@@ -9,6 +9,7 @@ const test = express.Router();
 // const { empleadoM } = require('../models/empleados.modelo.js');
 // const { Sequelize, DataTypes, Model } = require('sequelize');
 const { idiomasM } = require('../models/idiomas.modelo.js');
+const { empleadoM } = require('../models/empleados.modelo.js');
 const { sequelize } = require('../db/conection.js');
 // const host = process.env.DB_HOST;
 // const user = process.env.DB_USER;
@@ -87,7 +88,6 @@ test.post("/test", (req, res) => {
 
 test.get('/conectar', async (req, res) => {
     // await sequelize.authenticate();
-    console.log('Connection has been established successfully.');
     (async () => {
         try {
 
@@ -103,7 +103,9 @@ test.get('/conectar', async (req, res) => {
             // Eliminar usuario
             // await Usuario.destroy({ where: { nombre: 'Juan' } });
 
-            const consulta = await idiomasM.findAll();
+            const consulta = await empleadoM.findAll();
+            console.log(consulta);
+            
             let datos = consulta.map(i => i.toJSON());
 
             respuesta = datos;

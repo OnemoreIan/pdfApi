@@ -46,6 +46,8 @@ const idiomasM = sequelize.define(
             type: DataTypes.INTEGER
         }
 
+    },{
+        timestamps: false
     }
 );
 

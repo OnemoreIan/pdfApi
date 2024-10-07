@@ -1,12 +1,13 @@
-const { DataTypes, Model } = require('sequelize');
+const { DataTypes } = require('sequelize');
 const { sequelize } = require('../db/conection.js');
-const db = sequelize;
 
-const CursoM = db.define(
-    'Curso',
+
+const cursosM = sequelize.define(
+    'cursos',
     {
         id_curso: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            primaryKey: true
         },
         nom_curso: {
             type: DataTypes.STRING
@@ -23,34 +24,13 @@ const CursoM = db.define(
         id_empleado: {
             type: DataTypes.INTEGER
         }
-
+    },{
+        timestamps: false
     }
 )
 
 
 module.exports = {
-    CursoM
+    cursosM
 }
-
-
-/* class Cursos extends Model {
-    id;
-
-}
-User.init(
-    {
-        username: DataTypes.STRING,
-        birthday: DataTypes.DATE,
-    },
-    { sequelize, modelName: 'user' },
-);
-
-(async () => {
-    await sequelize.sync();
-    const jane = await User.create({
-        username: 'janedoe',
-        birthday: new Date(1980, 6, 20),
-    });
-    console.log(jane.toJSON());
-})(); */
 

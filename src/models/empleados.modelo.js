@@ -1,15 +1,12 @@
-const { Sequelize, DataTypes } = require('sequelize');
-
-const { conectarse } = require('../db/conection.js');
-
-const sequelize = new Sequelize('mysql');
+const { DataTypes } = require('sequelize');
+const { sequelize } = require('../db/conection.js');
 
 const empleadoM = sequelize.define(
     'empleados',
     {
-
         id_empleado: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER,
+            primaryKey: true
         },
         nombre: {
             type: DataTypes.STRING
@@ -30,9 +27,10 @@ const empleadoM = sequelize.define(
             type: DataTypes.STRING
         }
 
+    },{
+        timestamps: false
     }
 )
-
 
 
 module.exports = {

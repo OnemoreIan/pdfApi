@@ -13,8 +13,8 @@ general.get('/empleado', empleadosController.getOneUser);
 general.get('/empleados', empleadosController.getAllUsers);
 general.get('/dataEmpleado', empleadosController.getFullDataUser);
 
-general.get('/userdata', empleadosController.getUserData);
-general.get('/userdata2', empleadosController.getUsers);
+// general.get('/userdata', empleadosController.getUserData);
+// general.get('/userdata2', empleadosController.getUsers);
 
 //usuarios
 // general.get('/user',usuariosController.veriUsu);

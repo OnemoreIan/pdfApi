@@ -57,7 +57,7 @@ export class UserList extends LitElement {
                                 <td>${user.correo}</td>
                                 <td>
                                     <a href="/pdf?id=${user.id_empleado}" target="_blank" rel="direccion para descargar cv">Descargar Cv</a>
-                                    <button @click="${ () => this.goToInfo(user.idUser)}">Editar perfil</button>
+                                    <a href="/editar?id=${user.id_empleado}" rel="direccion para editar perfil">Editar</a>
                                 </td>
                             </tr>
                         `)}

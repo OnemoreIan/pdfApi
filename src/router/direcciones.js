@@ -11,4 +11,5 @@ const direccionesC = require("../controllers/direcciones.controller");
 general.get('/',direccionesC.main);
 general.get('/pdf',direccionesC.pagPdf);
 general.get('/user-info', direccionesC.pagUserInfo);
+general.get('/editar', direccionesC.editarPerfil);
 module.exports = general;

@@ -15,7 +15,7 @@ class Direcciones{
     }
 
     editarPerfil(req,res){
-        res.sendFile(path.join( __dirname, "../public/html/editarPerfil.html"))
+        res.sendFile(path.join( __dirname, "../public/html/editar.html"))
     }
 
     pagUserInfo(req, res){

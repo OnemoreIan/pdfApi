@@ -28,10 +28,10 @@ exports.getOneUser = (req, res) => {
         }
       })
 
-      res.send({'data': consutla});
+      res.send({ 'data': consutla });
     } catch (error) {
       console.error(error);
-      
+
     }
 
   })();
@@ -40,18 +40,18 @@ exports.getOneUser = (req, res) => {
 
 //obtener todos los resultados
 exports.getAllUsers = (req, res) => {
-  ( async() => {
+  (async () => {
     try {
 
       await sequelize.sync();
-      
+
       const consulta = await empleadoM.findAll();
 
-      res.send({'data': consulta});
+      res.send({ 'data': consulta });
 
     } catch (error) {
       console.error(error);
-      
+
     }
   })();
 
@@ -62,41 +62,81 @@ exports.getFullDataUser = (req, res) => {
   (async () => {
     try {
       let id = req.query.id;
-      
+
       await sequelize.sync();
 
-      let condicion = await {where: {id_empleado : id}};
+      let condicion = await { where: { id_empleado: id } };
 
 
       // obtenemos todos los datos del empleado
       let empleado = await empleadoM.findOne(condicion);
-      
+
       let idiomas = await idiomasM.findAll(condicion);
-      
+
       let experiencias = await experienciasM.findAll(condicion);
-      
+
       let educacion = await educacionM.findAll(condicion);
-      
+
       let certificaciones = await certificacionesM.findAll(condicion);
-      
+
       let puestos = await puestosM.findAll(condicion);
 
       let cursos = await cursosM.findAll(condicion);
-      
+
 
       let respuesta = {
-        'empleado':empleado,
-        'idiomas':idiomas,
+        'empleado': empleado,
+        'idiomas': idiomas,
         'experiencias': experiencias,
         'educacion': educacion,
         'certificaciones': certificaciones,
         'puestos': puestos,
-        'cursos':cursos
+        'cursos': cursos
       }
       // console.log(respuesta);
+
+
+      res.send({ 'data': respuesta });
+
+    } catch (error) {
+      console.error(error);
+
+    }
+  })();
+};
+
+// actualizar los datos del empleado
+exports.updateDataUser = (req, res) => {
+  (async () => {
+    try {
+      const id_empleado = req.query.id_empleado;
+      const correo = req.query.correo;
+      const descripcion = req.query.descripcion;
+      const edad = req.query.edad;
+      const puesto = req.query.puesto;
+      const telefono = req.query.telefono;
+
       
 
-      res.send({'data': respuesta});
+
+      await sequelize.sync();
+
+      await empleadoM.update({
+        id_empleado: id_empleado,
+        puesto: puesto,
+        telefono: telefono,
+        descripcion: descripcion,
+        edad: edad,
+        correo: correo
+      }, {
+        where:{ 
+          id_empleado: id_empleado
+        }
+      })
+
+      const empleado = await empleadoM.findAll({where: {id_empleado:id_empleado}});
+
+      res.send({'data': empleado})
 
     } catch (error) {
       console.error(error);

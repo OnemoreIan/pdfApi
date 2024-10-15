@@ -105,19 +105,18 @@ exports.getFullDataUser = (req, res) => {
   })();
 };
 
-// actualizar los datos del empleado
-exports.updateDataUser = (req, res) => {
+// actualizar datos del empleado
+exports.updateDataEmpleado = (req, res) => {
   (async () => {
     try {
-      const id_empleado = req.query.id_empleado;
-      const correo = req.query.correo;
-      const descripcion = req.query.descripcion;
-      const edad = req.query.edad;
-      const puesto = req.query.puesto;
-      const telefono = req.query.telefono;
+      console.log(req.body);
 
-      
-
+      const id_empleado = req.body.id_empleado;
+      const correo = req.body.correo;
+      const descripcion = req.body.descripcion;
+      const edad = req.body.edad;
+      const puesto = req.body.puesto;
+      const telefono = req.body.telefono;
 
       await sequelize.sync();
 
@@ -129,14 +128,14 @@ exports.updateDataUser = (req, res) => {
         edad: edad,
         correo: correo
       }, {
-        where:{ 
+        where: {
           id_empleado: id_empleado
         }
       })
 
-      const empleado = await empleadoM.findAll({where: {id_empleado:id_empleado}});
+      // const empleado = await empleadoM.findAll({ where: { id_empleado: id_empleado } });
 
-      res.send({'data': empleado})
+      res.send({ 'respuesta': 'Cambio exitoso' })
 
     } catch (error) {
       console.error(error);
@@ -144,6 +143,118 @@ exports.updateDataUser = (req, res) => {
     }
   })();
 };
+
+// actualizar experiencia del empleado
+exports.updateXpEmpleado = (req, res) => {
+  (async () => {
+    try {
+      // console.log(req.body);
+
+      const nom_organizacion = req.body.nom_organizacion;
+      const puesto = req.body.puesto;
+      const periodo = req.body.periodo;
+      const tecnologias = req.body.tecnologias;
+      const actividades = req.body.actividades;
+      const id_experiencia = req.body.id_experiencia;
+
+
+      await sequelize.sync();
+
+      await experienciasM.update({
+        nom_organizacion: nom_organizacion,
+        periodo: periodo,
+        puesto: puesto,
+        actividades: actividades,
+        tecnologias: tecnologias
+      }, {
+        where: {
+          id_experiencia: id_experiencia
+        }
+      })
+
+      // const empleado = await empleadoM.findAll({ where: { id_empleado: id_empleado } });
+
+      res.send({ 'respuesta': 'Cambio exitoso' })
+
+    } catch (error) {
+      console.error(error);
+
+    }
+  })();
+};
+
+// actualizar certificacion del empleado
+exports.updateCertiEmpleado = (req, res) => {
+  (async () => {
+    try {
+      console.log(req.body);
+
+      const id_certificacion = req.body.id_certificacion;
+      const nom_certificacion = req.body.nom_certificacion;
+      const periodo = req.body.periodo;
+      const institucion = req.body.institucion;
+      const vigencia = req.body.vigencia;
+
+
+      await sequelize.sync();
+
+      await certificacionesM.update({
+        nom_certificacion: nom_certificacion,
+        periodo: periodo,
+        institucion: institucion,
+        vigencia: vigencia
+      }, {
+        where: {
+          id_certificacion: id_certificacion
+        }
+      })
+
+      // const empleado = await empleadoM.findAll({ where: { id_empleado: id_empleado } });
+
+      res.send({ 'respuesta': 'Cambio exitoso' })
+
+    } catch (error) {
+      console.error(error);
+
+    }
+  })();
+};
+
+// actualizar de curso del empleado
+exports.updateCursoEmpleado = (req, res) => {
+  (async () => {
+    try {
+      console.log(req.body);
+
+      const id_curso = req.body.id_curso;
+      const nom_curso = req.body.nom_curso;
+      const periodo = req.body.periodo;
+      const institucion = req.body.institucion;
+      const vigencia = req.body.vigencia;
+
+      await sequelize.sync();
+
+      await cursosM.update({
+        nom_curso: nom_curso,
+        periodo: periodo,
+        institucion: institucion,
+        vigencia: vigencia
+      }, {
+        where: {
+          id_curso: id_curso
+        }
+      })
+
+      res.send({ 'respuesta': 'Cambio exitoso' })
+
+    } catch (error) {
+      console.error(error);
+
+    }
+  })();
+};
+
+
 
 
 

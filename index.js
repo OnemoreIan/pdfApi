@@ -14,6 +14,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //obtenemos las rutas
 const direcciones = require('./src/router/direcciones.js');
 const consultaEmpleados = require('./src/router/consulta-empleados.js');
+const experienciaEmpleados = require('./src/router/experiencia-empleados.js');
 const test = require('./src/router/test.js');
 const pdf = require('./src/router/generarPDF.js');
 
@@ -38,6 +39,7 @@ app.use(pdf);
 //end points api
 app.use('/api',test);//probar conexion
 app.use('/api',consultaEmpleados);
+app.use('/api',experienciaEmpleados);
 
 app.listen(port, () => {
     console.log('Ejecutando servidor en ' + port);

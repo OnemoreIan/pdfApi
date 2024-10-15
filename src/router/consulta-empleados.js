@@ -13,7 +13,11 @@ general.get('/empleado', empleadosController.getOneUser);
 general.get('/empleados', empleadosController.getAllUsers);
 general.get('/dataEmpleado', empleadosController.getFullDataUser);
 
-general.post('/actualizar/empleado/full',empleadosController.updateDataUser);
+
+//actualizar contenido
+general.post('/actualizar/empleado',empleadosController.updateDataEmpleado);
+general.post('/actualizar/certificacion',empleadosController.updateCertiEmpleado);
+general.post('/actualizar/curso',empleadosController.updateCursoEmpleado);
 
 // general.get('/userdata', empleadosController.getUserData);
 // general.get('/userdata2', empleadosController.getUsers);

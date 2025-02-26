@@ -17,6 +17,12 @@ const empleadoM = sequelize.define(
         telefono: {
             type: DataTypes.STRING
         },
+        objetivo:{
+            type: DataTypes.STRING
+        },
+        tecnologias:{
+            type: DataTypes.STRING
+        },
         descripcion: {
             type: DataTypes.STRING
         },

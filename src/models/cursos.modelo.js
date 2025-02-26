@@ -18,7 +18,13 @@ const cursosM = sequelize.define(
         institucion: {
             type: DataTypes.STRING
         },
-        vigencia: {
+        estatus: {
+            type: DataTypes.STRING
+        },
+        fechaInicio:{
+            type: DataTypes.STRING
+        },
+        fechaFin:{
             type: DataTypes.STRING
         },
         id_empleado: {

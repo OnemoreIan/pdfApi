@@ -8,6 +8,12 @@ class Direcciones{
 
     }
 
+    portada(req,res){
+
+        res.sendFile(path.join(__dirname, "../public/html/portada.html"));
+
+    }
+
     pagPdf(req,res){
 
         res.sendFile(path.join(__dirname, "../public/html/pdf.html"));

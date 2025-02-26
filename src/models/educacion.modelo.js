@@ -1,5 +1,5 @@
-const { DataTypes } = require('sequelize');
 const { sequelize } = require('../db/conection.js');
+const { DataTypes } = require('sequelize');
 
 const educacionM = sequelize.define(
     'educacion',
@@ -13,6 +13,12 @@ const educacionM = sequelize.define(
             type: DataTypes.STRING
         },
         periodo:{
+            type: DataTypes.STRING
+        },
+        fechaInicio:{
+            type: DataTypes.STRING
+        },
+        fechaFin:{
             type: DataTypes.STRING
         },
         institucion: {

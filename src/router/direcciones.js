@@ -9,6 +9,7 @@ const direccionesC = require("../controllers/direcciones.controller");
 // obtener los usuarios
 
 general.get('/',direccionesC.main);
+general.get('/2',direccionesC.portada);
 general.get('/pdf',direccionesC.pagPdf);
 general.get('/user-info', direccionesC.pagUserInfo);
 general.get('/editar', direccionesC.editarPerfil);

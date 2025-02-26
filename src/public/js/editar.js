@@ -81,11 +81,6 @@ createApp({
                 .catch(err => console.error(err))
         },
 
-        pop() {
-            alert('hi')
-
-        },
-
         saludar() {
             console.log("profecional");
 
@@ -335,6 +330,122 @@ createApp({
             });
         },
 
+        editarCertificacion(certificacion) {
+            let origen = certificacion;
+            Swal.fire({
+                icon: "question",
+                confirmButtonColor: '#2cba2c',
+                confirmButtonText: 'Guardar',
+                showDenyButton: true,
+                denyButtonText: 'Cancelar',
+                html: `
+                        <h4>Editar certificacion</h4>
+
+                        <div class="text-start mb-1">
+                            <p>Institucion</p>
+                            <input id="cer_institucion" class="form-control" type="text" placeholder="${origen.institucion}">
+                        </div>
+                        
+                        <div class="text-start mb-1">
+                            <p>Nombre</p>
+                            <input id="cer_nombre" class="form-control" type="text" placeholder="${origen.nom_certificacion}">
+                        </div>
+                        
+                        <div class="text-start mb-2">
+                            <span>Periodo</span>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <span>Inicio</span>
+                                    <input id="cer_periodo" class="form-control" type="date" placeholder="${origen.periodo}">
+                                </div>
+                                    
+                                <div class="col-md-6">
+                                    <span>Fin</span>
+                                    <input id="cer_periodo" class="form-control" type="date" placeholder="${origen.periodo}">
+                                </div>
+
+                            </div>
+
+                        </div>
+                        
+                        <div class="text-start mb-1">
+                            <p>Vigencia</p>
+                            <input id="cer_vigencia" class="form-control" type="text" placeholder="${origen.vigencia}">
+                        </div>
+                        
+                        <input id="id_certificacion" type="number" value="${origen.id_certificacion}" hidden>
+                    `,
+                showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    try {
+
+                        const url = `http://localhost:6060/api/actualizar/certificacion`;
+
+                        let institucion = await document.getElementById('cer_institucion').value;
+                        let nom_certificacion = await document.getElementById('cer_nombre').value;
+                        let periodo = await document.getElementById('cer_periodo').value;
+                        let vigencia = await document.getElementById('cer_vigencia').value;
+                        let id_certificacion = await document.getElementById('id_certificacion').value;
+
+                        let dataEnviar = {
+                            'nom_certificacion': null,
+                            'periodo': null,
+                            'institucion': null,
+                            'vigencia': null,
+                            'id_certificacion': null
+                        };
+
+
+                        (institucion.length == 0) ? dataEnviar.institucion = origen.institucion : dataEnviar.institucion = institucion;
+                        (nom_certificacion.length == 0) ? dataEnviar.nom_certificacion = origen.nom_certificacion : dataEnviar.nom_certificacion = nom_certificacion;
+                        (periodo.length == 0) ? dataEnviar.periodo = origen.periodo : dataEnviar.periodo = periodo;
+                        (vigencia.length == 0) ? dataEnviar.vigencia = origen.vigencia : dataEnviar.vigencia = vigencia;
+
+
+                        dataEnviar.id_certificacion = id_certificacion;
+                        console.log(dataEnviar);
+
+
+
+                        await fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(dataEnviar)
+                        })
+                            .then(res => res.json())
+                            .then(res => {
+                                console.log(res);
+
+                                Toast.fire({
+                                    icon: "success",
+                                    title: res.respuesta
+                                });
+                                this.cargaContenido();
+                            })
+
+                        // console.log(response.json());
+                        // console.log(datos);
+
+
+                        /* if (!response.ok) {
+                            return Swal.showValidationMessage(`
+                            ${JSON.stringify(await response.json())}
+                          `);
+                        } */
+                        // return response.json();
+                    } catch (error) {
+                        Toast.fire({
+                            icon: "error",
+                            title: "Hubo un problema"
+                        });
+                    }
+                }
+            });
+        },
+
         editarCursos(curso) {
             console.log(curso);
             let origen = curso;
@@ -450,7 +561,102 @@ createApp({
                     }
                 }
             });
-        }
+        },
+
+        editarIdiomas(idioma) {
+            let origen = idioma;
+            Swal.fire({
+                icon: "question",
+                confirmButtonColor: '#2cba2c',
+                confirmButtonText: 'Guardar',
+                showDenyButton: true,
+                denyButtonText: 'Cancelar',
+                html: `
+                        <h4>Editar idioma</h4>
+
+                        <div class="text-start mb-1">
+                            <p>Institucion</p>
+                            <input id="idi_idioma" class="form-control" type="text" placeholder="${origen.idioma}">
+                        </div>
+                        
+                        <div class="text-start mb-1">
+                            <p>Nombre curso</p>
+                            <input id="idi_institucion" class="form-control" type="text" placeholder="${origen.institucion}">
+                        </div>
+                        
+                        
+                        <div class="text-start mb-1">
+                            <p>Vigencia</p>
+                            <input id="idi_nivel" class="form-control" type="email" placeholder="${origen.nivel}">
+                        </div>
+                        
+
+                        <input id="id_idioma" type="number" value="${origen.id_idioma}" hidden>
+                    `,
+                showLoaderOnConfirm: true,
+                preConfirm: async () => {
+                    try {
+
+                        const url = `http://localhost:6060/api/actualizar/idiomas`;
+
+                        let idioma = await document.getElementById('idi_idioma').value;
+                        let institucion = await document.getElementById('idi_institucion').value;
+                        let nivel = await document.getElementById('idi_nivel').value;
+                        let id_idioma = await document.getElementById('id_idioma').value;
+
+                        let dataEnviar = {
+                            'idioma': null,
+                            'nivel': null,
+                            'institucion': null,
+                            'id_idioma': null,
+                        };
+
+                        (idioma.length == 0) ? dataEnviar.idioma = origen.idioma : dataEnviar.idioma = idioma;
+                        (institucion.length == 0) ? dataEnviar.institucion = origen.institucion : dataEnviar.institucion = institucion;
+                        (nivel.length == 0) ? dataEnviar.nivel = origen.nivel : dataEnviar.nivel = nivel;
+
+                        dataEnviar.id_idioma = id_idioma;
+                        console.log(dataEnviar);
+
+
+
+                        await fetch(url, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(dataEnviar)
+                        })
+                            .then(res => res.json())
+                            .then(res => {
+                                console.log(res);
+
+                                Toast.fire({
+                                    icon: "success",
+                                    title: res.respuesta
+                                });
+                                this.cargaContenido();
+                            })
+
+                        // console.log(response.json());
+                        // console.log(datos);
+
+
+                        /* if (!response.ok) {
+                            return Swal.showValidationMessage(`
+                            ${JSON.stringify(await response.json())}
+                          `);
+                        } */
+                        // return response.json();
+                    } catch (error) {
+                        Toast.fire({
+                            icon: "error",
+                            title: "Hubo un problema"
+                        });
+                    }
+                }
+            });
+        },
 
 
     },

@@ -18,6 +18,7 @@ general.get('/dataEmpleado', empleadosController.getFullDataUser);
 general.post('/actualizar/empleado',empleadosController.updateDataEmpleado);
 general.post('/actualizar/certificacion',empleadosController.updateCertiEmpleado);
 general.post('/actualizar/curso',empleadosController.updateCursoEmpleado);
+general.post('/actualizar/idiomas',empleadosController.updateIdiomaEmpleado);
 
 // general.get('/userdata', empleadosController.getUserData);
 // general.get('/userdata2', empleadosController.getUsers);

@@ -72,8 +72,10 @@ export class ContentDescription extends LitElement {
                 <div class="box-right">
                     <div class="box-right-1">
                         <p id="name">${this.name}</p><br>
-                        <p id="job">Programador</p><br>
-                        <p id="old">${this.old} años</p>
+                        <p id="job">Hola ARI</p><br>
+                        <p id="job">Qué vamos a hacer hoy?</p><br>
+                        <p id="job">aun no cambio la foto =></p><br>
+                        <p id="job"><= aqui va tu lista de pendientes</p>
                         <p id="phone">${this.phone}</p>
                     </div>
                     <div class="box-right-2">

@@ -135,7 +135,7 @@
                                     <span>Periodo: {{certificacion.periodo}}</span>
                                     <span>Vigencia: {{certificacion.vigencia}}</span>
                                     <button class="btn btn-info"
-                                        @click="editarExperiencias(certificacion)">Editar</button>
+                                        @click="editarCertificacion(certificacion)">Editar</button>
                                 </div>
 
                             </div>
@@ -225,7 +225,7 @@
                                     <span>Idioma: {{idioma.idioma}}</span>
                                     <span>Institucion: {{idioma.institucion}}</span>
                                     <span>Nivel: {{idioma.nivel}}</span>
-                                    <button class="btn btn-info">Editar</button>
+                                    <button class="btn btn-info" type="button" @click="editarIdiomas(idioma)">Editar</button>
                                 </div>
 
                             </div>

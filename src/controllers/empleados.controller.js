@@ -4,6 +4,7 @@ const { sequelize } = require('../db/conection.js');
 const { empleadoM } = require('../models/empleados.modelo.js');
 const { idiomasM } = require('../models/idiomas.modelo.js');
 const { experienciasM } = require('../models/experiencias.modelo.js');
+const { habilidadesBM } = require('../models/habilidadesB.modelo.js');
 const { educacionM } = require('../models/educacion.modelo.js');
 const { certificacionesM } = require('../models/certificaciones.modelo.js');
 const { puestosM } = require('../models/puestos.modelo.js');
@@ -75,7 +76,9 @@ exports.getFullDataUser = (req, res) => {
 
       let experiencias = await experienciasM.findAll(condicion);
 
-      let educacion = await educacionM.findAll(condicion);
+      let habilidadesBlandas = await habilidadesBM.findAll();
+
+      // let educacion = await educacionM.findAll(condicion);
 
       let certificaciones = await certificacionesM.findAll(condicion);
 
@@ -88,7 +91,8 @@ exports.getFullDataUser = (req, res) => {
         'empleado': empleado,
         'idiomas': idiomas,
         'experiencias': experiencias,
-        'educacion': educacion,
+        'habilidadesB': habilidadesBlandas,
+        // 'educacion': educacion,
         'certificaciones': certificaciones,
         'puestos': puestos,
         'cursos': cursos
@@ -99,6 +103,8 @@ exports.getFullDataUser = (req, res) => {
       res.send({ 'data': respuesta });
 
     } catch (error) {
+      console.error("error en la consulta");
+      
       console.error(error);
 
     }
@@ -242,6 +248,38 @@ exports.updateCursoEmpleado = (req, res) => {
       }, {
         where: {
           id_curso: id_curso
+        }
+      })
+
+      res.send({ 'respuesta': 'Cambio exitoso' })
+
+    } catch (error) {
+      console.error(error);
+
+    }
+  })();
+};
+
+// actualizar idiomas del empleado
+exports.updateIdiomaEmpleado = (req, res) => {
+  (async () => {
+    try {
+      // console.log(req.body);
+
+      const institucion = req.body.institucion;
+      const nivel = req.body.nivel;
+      const idioma = req.body.idioma;
+      const id_idioma = req.body.id_idioma;
+
+      await sequelize.sync();
+
+      await idiomasM.update({
+        idioma: idioma,
+        nivel: nivel,
+        institucion: institucion,
+      }, {
+        where: {
+          id_idioma: id_idioma
         }
       })
 

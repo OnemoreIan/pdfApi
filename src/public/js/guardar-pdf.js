@@ -1,4 +1,106 @@
-//buscar los datos
+const { createApp } = Vue;
+
+createApp({
+    data() {
+        return {
+            url: "http://localhost:6060/api/dataEmpleado?id=",
+            datosGenerales: {},
+            habilidadesBlandas: null,
+            datosLaborales: [],
+            datosAcademicos: null,
+            certificaciones: [],
+            cursos: [],
+            idiomas: []
+        }
+    },
+    methods: {
+        async consulta(id) {
+            this.url += id;
+            await fetch(this.url)
+                .then(data => data.json())
+                .then(data => {
+                    let info = data.data;
+                    console.log(info);
+
+                    this.datosGenerales = info.empleado;
+                    this.habilidadesBlandas = info.habilidadesB;
+                    this.datosLaborales = info.experiencias;
+                    this.certificaciones = info.certificaciones;
+                    this.cursos = info.cursos;
+                    this.idiomas = info.idiomas;
+
+                    console.log(this.datosLaborales);
+
+                    let contenedor = document.getElementById('app');
+
+                    let opciones = {
+                        filename: `cv de ${this.datosGenerales.nombre}`,
+                        image: { type: "pdf", quality: 0.98 },
+                        html2canvas: { scale: 2 },
+                        jsPDF: {
+                            unit: 'in',
+                            format: 'a4',
+                            orientation: 'portrait',
+                            margin: {
+                                top: 2,
+                                rigth: 3,
+                                left: 3,
+                                bottom: 2
+                            }
+                        }
+                    };
+
+                    var worked = html2pdf().set(opciones).from(contenedor).save();
+                    
+
+                })
+                .catch(err => console.error(err))
+        },
+        oprimir() {
+            console.log('Hola');
+        },
+        generales() {
+
+        }
+    },
+    components: {
+        'inprovisado': {
+            template: `
+                <p>Soy un componente</p>
+            `,
+            props: []
+        },
+        'tabla-habilidades': {
+            template: `
+                <table class='table'>
+                    <thead>
+                        <tr>
+                            <th>Nombre de habilida</th>
+                            <th>Como la aplica</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{nom_habilidad}}</td>
+                            <td>{{aplicacion}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `
+        }
+    },
+    mounted() {
+        let parametros = new URLSearchParams(window.location.search);
+        let id = parametros.get("id");
+
+        console.log("ruta de vue " + id);
+        this.consulta(id);
+        
+
+    }
+}).mount('#app')
+
+/* //buscar los datos
 async function obtenerDatos(id) {
     let ruta = "http://localhost:6060/api/dataEmpleado?id=" + id;
 
@@ -79,7 +181,7 @@ async function convertirPDF(divId) {
                 }
             };
 
-            var worked = html2pdf().set(opciones).from(contenedor).save();
+            // var worked = html2pdf().set(opciones).from(contenedor).save();
 
         })
         .catch(err => console.error(err))
@@ -94,7 +196,7 @@ async function convertirPDF(divId) {
 
 function datosGenerales(empleado) {
     // console.log(empleado);
-    
+
     const div = document.createElement("div");
     div.classList.add("mx-3");
 
@@ -116,9 +218,9 @@ function datosGenerales(empleado) {
 
     // const p3 = document.createElement("p");
     // p3.textContent = `Cuentas en las que ha colaborado en NTT Data: ${cuentas}`;
-    /* cuentas.map(item => {
+    cuentas.map(item => {
 
-    }); */
+    });
 
     const p4 = document.createElement("p");
     p4.textContent = `Telefono: ${empleado.telefono}`;
@@ -131,7 +233,7 @@ function datosGenerales(empleado) {
 
 // experiencia
 function experiencia(experiencia) {
-    
+
     experiencia.forEach(item => {
         const div = document.createElement("div");
         div.classList.add("mx-3");
@@ -193,7 +295,7 @@ function educacion(educacion) {
 // certificaciones
 function certificaciones(certificaciones) {
     // console.log(certificaciones[0]);
-    
+
     certificaciones.forEach(item => {
 
         const div = document.createElement("div");
@@ -225,7 +327,7 @@ function certificaciones(certificaciones) {
 // cursos
 function cursos(cursos) {
     // console.log(cursos[0]);
-    
+
     cursos.forEach(item => {
 
         const tr = document.createElement("tr");
@@ -248,7 +350,7 @@ function cursos(cursos) {
 // idiomas
 function idiomas(idiomas) {
     // console.log(idiomas[0]);
-    
+
     idiomas.forEach(item => {
 
         const tr = document.createElement("tr");
@@ -278,3 +380,4 @@ window.addEventListener('load', function () {
 
     convertirPDF("plan-id");
 });
+ */
